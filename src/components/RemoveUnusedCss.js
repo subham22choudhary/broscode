@@ -119,10 +119,11 @@ const RemoveUnusedCss = () => {
                 {filteredCss && (
                     <div>
                         <h3>Filtered CSS</h3>
+                        <button onClick={handleCopyToClipboard}>Copy</button>
                         <div>
                             <pre>{filteredCss}</pre>
                         </div>
-                        <button onClick={handleCopyToClipboard}>Copy to Clipboard</button>
+
                     </div>
                 )}
             </div>
