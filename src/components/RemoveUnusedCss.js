@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './RemoveUnused.css';
 
 const RemoveUnusedCss = () => {
     const [html, setHtml] = useState('');
@@ -66,48 +67,65 @@ const RemoveUnusedCss = () => {
         setFilteredCss(filteredRules.join('\n'));
     };
 
+    const handleCopyToClipboard = () => {
+        navigator.clipboard.writeText(filteredCss)
+            .then(() => {
+                alert('Filtered CSS copied to clipboard!');
+            })
+            .catch((err) => {
+                console.error('Failed to copy: ', err);
+            });
+    };
+
     return (
         <div>
             <h2>Remove Unused CSS</h2>
 
-            <div>
-                <textarea
-                    placeholder="Paste HTML code here"
-                    value={html}
-                    onChange={(e) => setHtml(e.target.value)}
-                    rows="10"
-                    cols="50"
-                ></textarea>
-            </div>
+            <div className='inp-cod'>
+                <div>
+                    <textarea
+                        placeholder="Paste HTML code here"
+                        value={html}
+                        onChange={(e) => setHtml(e.target.value)}
+                        rows="10"
+                        cols="50"
+                    ></textarea>
+                </div>
 
-            <div>
-                <textarea
-                    placeholder="Paste CSS code here"
-                    value={css}
-                    onChange={(e) => setCss(e.target.value)}
-                    rows="10"
-                    cols="50"
-                ></textarea>
-            </div>
+                <div>
+                    <textarea
+                        placeholder="Paste CSS code here"
+                        value={css}
+                        onChange={(e) => setCss(e.target.value)}
+                        rows="10"
+                        cols="50"
+                    ></textarea>
+                </div>
 
-            <div>
-                <textarea
-                    placeholder="Paste JS code here"
-                    value={js}
-                    onChange={(e) => setJs(e.target.value)}
-                    rows="10"
-                    cols="50"
-                ></textarea>
+                <div>
+                    <textarea
+                        placeholder="Paste JS code here"
+                        value={js}
+                        onChange={(e) => setJs(e.target.value)}
+                        rows="10"
+                        cols="50"
+                    ></textarea>
+                </div>
             </div>
 
             <button onClick={handleRemoveUnusedCss}>Remove Unused CSS</button>
 
-            {filteredCss && (
-                <div>
-                    <h3>Filtered CSS</h3>
-                    <pre>{filteredCss}</pre>
-                </div>
-            )}
+            <div className='out-put'>
+                {filteredCss && (
+                    <div>
+                        <h3>Filtered CSS</h3>
+                        <div>
+                            <pre>{filteredCss}</pre>
+                        </div>
+                        <button onClick={handleCopyToClipboard}>Copy to Clipboard</button>
+                    </div>
+                )}
+            </div>
         </div>
     );
 };

@@ -1,0 +1,12 @@
+.inp-cod {
+    display: flex;
+}
+
+.out-put {
+    width: fit-content;
+}
+
+
+.out-put div div pre {
+    border: 1.5px solid #1e1e1e;
+}

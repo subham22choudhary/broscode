@@ -11,7 +11,18 @@ root.render(
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+// Subham- Custom script for fav-tab message
+function changeTabText(newText) {
+  document.title = newText;
+}
+
+document.addEventListener("visibilitychange", function () {
+  if (document.hidden) {
+    changeTabText("We miss you!");
+  } else {
+    changeTabText("Welcome Back!");
+  }
+});
+
+
 reportWebVitals();
